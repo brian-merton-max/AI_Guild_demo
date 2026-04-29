@@ -1,0 +1,13 @@
+{
+  "$schema": "https://aka.ms/copilot-hooks-schema",
+  "version": "1.0",
+  "hooks": [
+    {
+      "name": "security-guard",
+      "description": "Blocks the AI from saving any file that contains the string DANGEROUS_PLAINTEXT_PASSWORD. The external script reads the tool-call JSON from stdin and returns an allow/deny decision.",
+      "event": "PreToolUse",
+      "tools": ["EditFile", "WriteFile", "CreateFile"],
+      "command": "bash scripts/security-check.sh"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://aka.ms/copilot-hooks-schema",
+  "version": "1.0",
+  "hooks": [
+    {
+      "name": "auto-format",
+      "description": "Runs Prettier on every file the AI agent just edited, ensuring consistent code style regardless of what the agent produced.",
+      "event": "PostToolUse",
+      "tools": ["EditFile", "WriteFile", "CreateFile"],
+      "command": "npx prettier --write \"${tool.input.path}\""
+    }
+  ]
+}

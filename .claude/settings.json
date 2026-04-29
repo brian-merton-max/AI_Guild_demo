@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');const s=fs.existsSync('SESSIONS.md')?fs.readFileSync('SESSIONS.md','utf8'):'(SESSIONS.md not found)';console.log('\\n\\n---\\nSESSION TASK CONTEXT (from SESSIONS.md):\\n'+s+'---');\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const {execSync}=require('child_process');const msg='Claude finished the task';try{if(process.platform==='win32'){execSync('powershell -Command \\\"[System.Reflection.Assembly]::LoadWithPartialName(\\\\\\\"System.Windows.Forms\\\\\\\");[System.Windows.Forms.MessageBox]::Show(\\\\\\\"'+msg+'\\\\\\\")\\\"');}else if(process.platform==='darwin'){execSync('osascript -e \\'display notification \\\"'+msg+'\\\" with title \\\"Claude Code\\\"\\'');}else{execSync('notify-send \\\"Claude Code\\\" \\\"'+msg+'\\\"');}}catch{console.log('[Claude Hook] '+msg);}\""
+          }
+        ]
+      }
+    ]
+  }
+}
