@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const {execSync}=require('child_process');const msg='Claude finished the task';try{if(process.platform==='win32'){execSync('powershell -Command \\\"[System.Reflection.Assembly]::LoadWithPartialName(\\\\\\\"System.Windows.Forms\\\\\\\");[System.Windows.Forms.MessageBox]::Show(\\\\\\\"'+msg+'\\\\\\\")\\\"');}else if(process.platform==='darwin'){execSync('osascript -e \\'display notification \\\"'+msg+'\\\" with title \\\"Claude Code\\\"\\'');}else{execSync('notify-send \\\"Claude Code\\\" \\\"'+msg+'\\\"');}}catch{console.log('[Claude Hook] '+msg);}\""
+            "command": "powershell -ExecutionPolicy Bypass -WindowStyle Hidden -File scripts/notify.ps1"
           }
         ]
       }
